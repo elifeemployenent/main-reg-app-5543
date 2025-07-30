@@ -85,7 +85,7 @@ const LandingPage = () => {
                 </Button>
               </Link>
               {utilitiesData && utilitiesData[0] && <a href={utilitiesData[0].url} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-                  <Button variant="outline" size="lg" className="w-full sm:w-auto px-6 sm:px-8 py-3 text-sm font-bold bg-green-600 text-white hover:bg-green-700 sm:text-sm">ഏജന്റ്  മാര്‍ക്ക് മാത്രം</Button>
+                  <Button variant="outline" size="lg" className="w-full sm:w-auto px-6 sm:px-8 py-3 text-sm font-bold bg-green-600 text-white hover:bg-green-700 sm:text-sm">സ്വയം തൊഴിൽ പദ്ധതി തിരഞ്ഞെടുക്കാൻ</Button>
                 </a>}
             </div>
           </div>
