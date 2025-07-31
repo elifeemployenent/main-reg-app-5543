@@ -73,20 +73,24 @@ const LandingPage = () => {
             <p className="text-base sm:text-lg text-gray-600 mb-6 sm:mb-8 max-w-3xl mx-auto font-normal px-4">
               വിവിധ സ്വയം തൊഴിൽ അവസരങ്ങൾക്കായി രജിസ്റ്റർ ചെയ്യുകയും നിങ്ങളുടെ അപേക്ഷാ നില ട്രാക്ക് ചെയ്യുകയും ചെയ്യുക. ഭാവി കെട്ടിപ്പടുക്കുന്ന ആയിരക്കണക്കിന് സംരംഭകരോടൊപ്പം ചേരൂ.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
+            <div className="flex flex-col gap-4 max-w-md mx-auto sm:max-w-none sm:flex-row sm:gap-4 sm:justify-center px-4">
               <Link to="/categories" className="w-full sm:w-auto">
-                <Button size="lg" className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white px-6 sm:px-8 py-3 text-sm sm:text-sm">
+                <Button size="lg" className="w-full sm:w-auto h-12 px-6 py-3 text-sm font-medium">
                   പുതുതായി രജിസ്ട്രേഷൻ ചെയ്യുക
                 </Button>
               </Link>
               <Link to="/status" className="w-full sm:w-auto">
-                <Button variant="outline" size="lg" className="w-full sm:w-auto px-6 sm:px-8 py-3 text-sm font-bold bg-[#f77205] text-slate-50 hover:bg-[#e66204] sm:text-sm">
+                <Button variant="secondary" size="lg" className="w-full sm:w-auto h-12 px-6 py-3 text-sm font-medium">
                   മൊബൈൽ നമ്പർ ചെക്ക് ചെയ്യുക
                 </Button>
               </Link>
-              {utilitiesData && utilitiesData[0] && <a href={utilitiesData[0].url} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-                  <Button variant="outline" size="lg" className="w-full sm:w-auto px-6 sm:px-8 py-3 text-sm font-bold bg-green-600 text-white hover:bg-green-700 sm:text-sm">സ്വയം തൊഴിൽ പദ്ധതി തിരഞ്ഞെടുക്കാൻ</Button>
-                </a>}
+              {utilitiesData && utilitiesData[0] && (
+                <a href={utilitiesData[0].url} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+                  <Button variant="outline" size="lg" className="w-full sm:w-auto h-12 px-6 py-3 text-sm font-medium border-green-600 text-green-600 hover:bg-green-600 hover:text-white">
+                    സ്വയം തൊഴിൽ പദ്ധതി തിരഞ്ഞെടുക്കാൻ
+                  </Button>
+                </a>
+              )}
             </div>
           </div>
         </div>
