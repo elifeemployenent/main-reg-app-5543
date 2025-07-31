@@ -87,7 +87,7 @@ const LandingPage = () => {
                 <Link to="/categories" className="w-full lg:flex-1">
                   <Button 
                     size="lg" 
-                    className="w-full h-11 px-4 py-2 text-xs sm:text-sm md:text-base font-semibold rounded-lg whitespace-nowrap"
+                    className="w-full min-h-11 px-4 py-2 text-xs sm:text-sm md:text-base font-semibold rounded-lg text-center leading-tight"
                   >
                     പുതുതായി രജിസ്ട്രേഷൻ ചെയ്യുക
                   </Button>
@@ -97,7 +97,7 @@ const LandingPage = () => {
                   <Button 
                     variant="secondary" 
                     size="lg" 
-                    className="w-full h-11 px-4 py-2 text-xs sm:text-sm md:text-base font-semibold rounded-lg whitespace-nowrap"
+                    className="w-full min-h-11 px-4 py-2 text-xs sm:text-sm md:text-base font-semibold rounded-lg text-center leading-tight"
                   >
                     മൊബൈൽ നമ്പർ ചെക്ക് ചെയ്യുക
                   </Button>
@@ -108,7 +108,7 @@ const LandingPage = () => {
                     <Button 
                       variant="outline" 
                       size="lg" 
-                      className="w-full h-11 px-4 py-2 text-xs sm:text-sm md:text-base font-semibold rounded-lg border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white whitespace-nowrap"
+                      className="w-full min-h-11 px-4 py-2 text-xs sm:text-sm md:text-base font-semibold rounded-lg border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white text-center leading-tight"
                     >
                       സ്വയം തൊഴിൽ പദ്ധതി തിരഞ്ഞെടുക്കാൻ
                     </Button>
