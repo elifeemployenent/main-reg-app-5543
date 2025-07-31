@@ -82,33 +82,33 @@ const LandingPage = () => {
             </div>
             
             {/* Buttons */}
-            <div className="space-y-4 pt-4">
-              <div className="flex flex-col gap-4 max-w-md mx-auto lg:max-w-none lg:flex-row lg:gap-6 lg:justify-center">
-                <Link to="/categories" className="w-full lg:w-auto">
+            <div className="pt-6 px-4">
+              <div className="flex flex-col gap-3 max-w-sm mx-auto lg:max-w-none lg:flex-row lg:gap-4 lg:justify-center lg:max-w-3xl">
+                <Link to="/categories" className="w-full lg:flex-1">
                   <Button 
                     size="lg" 
-                    className="w-full lg:w-auto h-12 px-6 py-3 text-sm md:text-base font-semibold rounded-lg"
+                    className="w-full h-11 px-4 py-2 text-xs sm:text-sm md:text-base font-semibold rounded-lg whitespace-nowrap"
                   >
                     പുതുതായി രജിസ്ട്രേഷൻ ചെയ്യുക
                   </Button>
                 </Link>
                 
-                <Link to="/status" className="w-full lg:w-auto">
+                <Link to="/status" className="w-full lg:flex-1">
                   <Button 
                     variant="secondary" 
                     size="lg" 
-                    className="w-full lg:w-auto h-12 px-6 py-3 text-sm md:text-base font-semibold rounded-lg"
+                    className="w-full h-11 px-4 py-2 text-xs sm:text-sm md:text-base font-semibold rounded-lg whitespace-nowrap"
                   >
                     മൊബൈൽ നമ്പർ ചെക്ക് ചെയ്യുക
                   </Button>
                 </Link>
                 
                 {utilitiesData && utilitiesData[0] && (
-                  <a href={utilitiesData[0].url} target="_blank" rel="noopener noreferrer" className="w-full lg:w-auto">
+                  <a href={utilitiesData[0].url} target="_blank" rel="noopener noreferrer" className="w-full lg:flex-1">
                     <Button 
                       variant="outline" 
                       size="lg" 
-                      className="w-full lg:w-auto h-12 px-6 py-3 text-sm md:text-base font-semibold rounded-lg border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white"
+                      className="w-full h-11 px-4 py-2 text-xs sm:text-sm md:text-base font-semibold rounded-lg border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white whitespace-nowrap"
                     >
                       സ്വയം തൊഴിൽ പദ്ധതി തിരഞ്ഞെടുക്കാൻ
                     </Button>
@@ -212,16 +212,20 @@ const LandingPage = () => {
         </div>
       </div>
 
-      {/* Women Self-Employment Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-        <div className="text-center mb-8 sm:mb-12">
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
-            Empowering Women Entrepreneurs
-          </h2>
-          <p className="text-base sm:text-lg text-gray-600 px-4">
-            Join our community of successful women who have built their own businesses
-          </p>
-        </div>
+      {/* Featured Self-Employment Opportunities */}
+      <div className="bg-gradient-to-br from-amber-50 to-orange-100 py-12 sm:py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8 sm:mb-12">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500 to-orange-500 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">
+              🔥 HOT OPPORTUNITIES
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
+              Most In-Demand Self-Employment Categories
+            </h2>
+            <p className="text-base sm:text-lg text-gray-600 px-4">
+              High-earning opportunities with guaranteed market demand and government support
+            </p>
+          </div>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           <Card className="bg-gradient-to-br from-pink-50 to-rose-100 border-pink-200">
@@ -259,6 +263,7 @@ const LandingPage = () => {
               </div>
             </CardContent>
           </Card>
+        </div>
         </div>
       </div>
 
