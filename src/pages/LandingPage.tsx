@@ -65,28 +65,28 @@ const LandingPage = () => {
       
       {/* Hero Section */}
       <div className="relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
           <div className="text-center">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
+            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-6 sm:mb-8 leading-tight px-2">
               E-life Society Self Employment Registration Portal
             </h1>
-            <p className="text-base sm:text-lg text-gray-600 mb-6 sm:mb-8 max-w-3xl mx-auto font-normal px-4">
+            <p className="text-sm sm:text-base lg:text-lg text-gray-600 mb-8 sm:mb-12 max-w-2xl mx-auto font-normal px-6 leading-relaxed">
               വിവിധ സ്വയം തൊഴിൽ അവസരങ്ങൾക്കായി രജിസ്റ്റർ ചെയ്യുകയും നിങ്ങളുടെ അപേക്ഷാ നില ട്രാക്ക് ചെയ്യുകയും ചെയ്യുക. ഭാവി കെട്ടിപ്പടുക്കുന്ന ആയിരക്കണക്കിന് സംരംഭകരോടൊപ്പം ചേരൂ.
             </p>
-            <div className="flex flex-col gap-4 max-w-md mx-auto sm:max-w-none sm:flex-row sm:gap-4 sm:justify-center px-4">
-              <Link to="/categories" className="w-full sm:w-auto">
-                <Button size="lg" className="w-full sm:w-auto h-12 px-6 py-3 text-sm font-medium">
+            <div className="space-y-4 max-w-sm mx-auto sm:max-w-none sm:space-y-0 sm:flex sm:flex-row sm:gap-4 sm:justify-center px-6">
+              <Link to="/categories" className="block w-full sm:w-auto">
+                <Button size="lg" className="w-full sm:w-auto h-14 px-8 py-4 text-base font-medium rounded-lg">
                   പുതുതായി രജിസ്ട്രേഷൻ ചെയ്യുക
                 </Button>
               </Link>
-              <Link to="/status" className="w-full sm:w-auto">
-                <Button variant="secondary" size="lg" className="w-full sm:w-auto h-12 px-6 py-3 text-sm font-medium">
+              <Link to="/status" className="block w-full sm:w-auto">
+                <Button variant="secondary" size="lg" className="w-full sm:w-auto h-14 px-8 py-4 text-base font-medium rounded-lg">
                   മൊബൈൽ നമ്പർ ചെക്ക് ചെയ്യുക
                 </Button>
               </Link>
               {utilitiesData && utilitiesData[0] && (
-                <a href={utilitiesData[0].url} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-                  <Button variant="outline" size="lg" className="w-full sm:w-auto h-12 px-6 py-3 text-sm font-medium border-green-600 text-green-600 hover:bg-green-600 hover:text-white">
+                <a href={utilitiesData[0].url} target="_blank" rel="noopener noreferrer" className="block w-full sm:w-auto">
+                  <Button variant="outline" size="lg" className="w-full sm:w-auto h-14 px-8 py-4 text-base font-medium rounded-lg border-green-600 text-green-600 hover:bg-green-600 hover:text-white">
                     സ്വയം തൊഴിൽ പദ്ധതി തിരഞ്ഞെടുക്കാൻ
                   </Button>
                 </a>
