@@ -65,50 +65,56 @@ const LandingPage = () => {
       
       {/* Hero Section */}
       <div className="relative overflow-hidden bg-gradient-to-br from-blue-50 to-indigo-100">
-        <div className="container mx-auto px-4 py-16 lg:py-24">
-          <div className="max-w-4xl mx-auto text-center">
+        <div className="container mx-auto px-6 py-12">
+          <div className="max-w-4xl mx-auto text-center space-y-8">
             {/* Title */}
-            <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-6 lg:mb-8 leading-tight">
-              E-life Society Self Employment Registration Portal
-            </h1>
+            <div className="space-y-4">
+              <h1 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 leading-tight">
+                E-life Society Self Employment Registration Portal
+              </h1>
+            </div>
             
             {/* Description */}
-            <p className="text-base md:text-lg lg:text-xl text-gray-600 mb-10 lg:mb-12 max-w-3xl mx-auto leading-relaxed">
-              വിവിധ സ്വയം തൊഴിൽ അവസരങ്ങൾക്കായി രജിസ്റ്റർ ചെയ്യുകയും നിങ്ങളുടെ അപേക്ഷാ നില ട്രാക്ക് ചെയ്യുകയും ചെയ്യുക. ഭാവി കെട്ടിപ്പടുക്കുന്ന ആയിരക്കണക്കിന് സംരംഭകരോടൊപ്പം ചേരൂ.
-            </p>
+            <div className="space-y-6">
+              <p className="text-sm md:text-base lg:text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
+                വിവിധ സ്വയം തൊഴിൽ അവസരങ്ങൾക്കായി രജിസ്റ്റർ ചെയ്യുകയും നിങ്ങളുടെ അപേക്ഷാ നില ട്രാക്ക് ചെയ്യുകയും ചെയ്യുക. ഭാവി കെട്ടിപ്പടുക്കുന്ന ആയിരക്കണക്കിന് സംരംഭകരോടൊപ്പം ചേരൂ.
+              </p>
+            </div>
             
             {/* Buttons */}
-            <div className="flex flex-col gap-4 max-w-2xl mx-auto lg:flex-row lg:gap-6 lg:justify-center">
-              <Link to="/categories" className="flex-1 lg:flex-initial">
-                <Button 
-                  size="lg" 
-                  className="w-full lg:w-auto h-14 px-8 py-4 text-base font-semibold rounded-xl transition-all duration-300 hover:scale-105"
-                >
-                  പുതുതായി രജിസ്ട്രേഷൻ ചെയ്യുക
-                </Button>
-              </Link>
-              
-              <Link to="/status" className="flex-1 lg:flex-initial">
-                <Button 
-                  variant="secondary" 
-                  size="lg" 
-                  className="w-full lg:w-auto h-14 px-8 py-4 text-base font-semibold rounded-xl transition-all duration-300 hover:scale-105"
-                >
-                  മൊബൈൽ നമ്പർ ചെക്ക് ചെയ്യുക
-                </Button>
-              </Link>
-              
-              {utilitiesData && utilitiesData[0] && (
-                <a href={utilitiesData[0].url} target="_blank" rel="noopener noreferrer" className="flex-1 lg:flex-initial">
+            <div className="space-y-4 pt-4">
+              <div className="flex flex-col gap-4 max-w-md mx-auto lg:max-w-none lg:flex-row lg:gap-6 lg:justify-center">
+                <Link to="/categories" className="w-full lg:w-auto">
                   <Button 
-                    variant="outline" 
                     size="lg" 
-                    className="w-full lg:w-auto h-14 px-8 py-4 text-base font-semibold rounded-xl border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white transition-all duration-300 hover:scale-105"
+                    className="w-full lg:w-auto h-12 px-6 py-3 text-sm md:text-base font-semibold rounded-lg"
                   >
-                    സ്വയം തൊഴിൽ പദ്ധതി തിരഞ്ഞെടുക്കാൻ
+                    പുതുതായി രജിസ്ട്രേഷൻ ചെയ്യുക
                   </Button>
-                </a>
-              )}
+                </Link>
+                
+                <Link to="/status" className="w-full lg:w-auto">
+                  <Button 
+                    variant="secondary" 
+                    size="lg" 
+                    className="w-full lg:w-auto h-12 px-6 py-3 text-sm md:text-base font-semibold rounded-lg"
+                  >
+                    മൊബൈൽ നമ്പർ ചെക്ക് ചെയ്യുക
+                  </Button>
+                </Link>
+                
+                {utilitiesData && utilitiesData[0] && (
+                  <a href={utilitiesData[0].url} target="_blank" rel="noopener noreferrer" className="w-full lg:w-auto">
+                    <Button 
+                      variant="outline" 
+                      size="lg" 
+                      className="w-full lg:w-auto h-12 px-6 py-3 text-sm md:text-base font-semibold rounded-lg border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white"
+                    >
+                      സ്വയം തൊഴിൽ പദ്ധതി തിരഞ്ഞെടുക്കാൻ
+                    </Button>
+                  </a>
+                )}
+              </div>
             </div>
           </div>
         </div>
