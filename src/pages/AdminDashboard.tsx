@@ -1,14 +1,12 @@
-
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
-import { LogOut, Users, Grid3X3, MapPin, Bell, Shield, BarChart3, Settings, Wallet } from 'lucide-react';
+import { LogOut, Grid3X3, MapPin, Bell, Shield, BarChart3, Settings, Wallet } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import Navbar from '@/components/Navbar';
-import RegistrationsManagement from '@/components/admin/RegistrationsManagement';
 import CategoriesManagement from '@/components/admin/CategoriesManagement';
 import PanchayathsManagement from '@/components/admin/PanchayathsManagement';
 import AnnouncementsManagement from '@/components/admin/AnnouncementsManagement';
@@ -17,14 +15,12 @@ import AdminPermissionsManagement from '@/components/admin/AdminPermissionsManag
 import ReportsManagement from '@/components/admin/ReportsManagement';
 import UtilitiesManagement from '@/components/admin/UtilitiesManagement';
 import AccountsManagement from '@/components/admin/AccountsManagement';
-import PendingRegistrationsPopup from '@/components/admin/PendingRegistrationsPopup';
-import ExpiredRegistrationsNotification from '@/components/admin/ExpiredRegistrationsNotification';
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [adminSession, setAdminSession] = useState(null);
-  const [activeTab, setActiveTab] = useState('registrations');
+  const [activeTab, setActiveTab] = useState('categories');
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -201,12 +197,6 @@ const AdminDashboard = () => {
     <div className="min-h-screen bg-gray-50">
       <Navbar />
       
-      {/* Pending Registrations Popup */}
-      <PendingRegistrationsPopup 
-        adminSession={adminSession} 
-        onNavigateToRegistrations={() => setActiveTab('registrations')}
-      />
-      
       {/* Admin Header */}
       <div className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 py-4">
@@ -221,7 +211,6 @@ const AdminDashboard = () => {
               </p>
             </div>
             <div className="flex items-center gap-2">
-              <ExpiredRegistrationsNotification adminSession={adminSession} />
               <Button onClick={handleLogout} variant="outline" className="flex items-center gap-2 bg-red-400 hover:bg-red-300">
                 <LogOut className="h-4 w-4" />
                 Logout
@@ -234,98 +223,69 @@ const AdminDashboard = () => {
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 py-6">
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          {adminSession.role === 'user_admin' ? (
-            // User admin only sees registrations
-            <div className="mb-6">
-              <div className="border-b border-gray-200">
-                <nav className="-mb-px flex">
-                  <button className="bg-white border-b-2 border-blue-500 text-blue-600 py-4 px-6 text-sm font-medium flex items-center gap-2">
-                    <Users className="h-4 w-4" />
-                    Registrations
-                  </button>
-                </nav>
-              </div>
+          <div className="mb-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-2 mb-6">
+              {getPermissionsForModule('categories').canRead && <button onClick={() => setActiveTab('categories')} className={`flex flex-col items-center gap-2 p-4 rounded-lg border transition-all ${activeTab === 'categories' ? 'bg-primary text-primary-foreground border-primary shadow-lg' : 'bg-card hover:bg-accent border-border hover:shadow-md'}`}>
+                  <Grid3X3 className="h-5 w-5" />
+                  <span className="text-xs font-medium text-center">Categories</span>
+                </button>}
+              {getPermissionsForModule('panchayaths').canRead && <button onClick={() => setActiveTab('panchayaths')} className={`flex flex-col items-center gap-2 p-4 rounded-lg border transition-all ${activeTab === 'panchayaths' ? 'bg-primary text-primary-foreground border-primary shadow-lg' : 'bg-card hover:bg-accent border-border hover:shadow-md'}`}>
+                  <MapPin className="h-5 w-5" />
+                  <span className="text-xs font-medium text-center">Panchayaths</span>
+                </button>}
+              {getPermissionsForModule('announcements').canRead && <button onClick={() => setActiveTab('announcements')} className={`flex flex-col items-center gap-2 p-4 rounded-lg border transition-all ${activeTab === 'announcements' ? 'bg-primary text-primary-foreground border-primary shadow-lg' : 'bg-card hover:bg-accent border-border hover:shadow-md'}`}>
+                  <Bell className="h-5 w-5" />
+                  <span className="text-xs font-medium text-center">Announcements</span>
+                </button>}
+              {getPermissionsForModule('utilities').canRead && <button onClick={() => setActiveTab('utilities')} className={`flex flex-col items-center gap-2 p-4 rounded-lg border transition-all ${activeTab === 'utilities' ? 'bg-primary text-primary-foreground border-primary shadow-lg' : 'bg-card hover:bg-accent border-border hover:shadow-md'}`}>
+                  <Settings className="h-5 w-5" />
+                  <span className="text-xs font-medium text-center">Utilities</span>
+                </button>}
+              {getPermissionsForModule('accounts').canRead && <button onClick={() => setActiveTab('accounts')} className={`flex flex-col items-center gap-2 p-4 rounded-lg border transition-all ${activeTab === 'accounts' ? 'bg-primary text-primary-foreground border-primary shadow-lg' : 'bg-card hover:bg-accent border-border hover:shadow-md'}`}>
+                  <Wallet className="h-5 w-5" />
+                  <span className="text-xs font-medium text-center">Accounts</span>
+                </button>}
+              {getPermissionsForModule('reports').canRead && <button onClick={() => setActiveTab('reports')} className={`flex flex-col items-center gap-2 p-4 rounded-lg border transition-all ${activeTab === 'reports' ? 'bg-primary text-primary-foreground border-primary shadow-lg' : 'bg-card hover:bg-accent border-border hover:shadow-md'}`}>
+                  <BarChart3 className="h-5 w-5" />
+                  <span className="text-xs font-medium text-center">Reports</span>
+                </button>}
+              {permissions.canManageAdmins && <button onClick={() => setActiveTab('admins')} className={`flex flex-col items-center gap-2 p-4 rounded-lg border transition-all ${activeTab === 'admins' ? 'bg-primary text-primary-foreground border-primary shadow-lg' : 'bg-card hover:bg-accent border-border hover:shadow-md'}`}>
+                  <Shield className="h-5 w-5" />
+                  <span className="text-xs font-medium text-center">Admin Control</span>
+                </button>}
             </div>
-          ) : (
-            <div className="mb-6">
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-2 mb-6">
-                {getPermissionsForModule('registrations').canRead && <button onClick={() => setActiveTab('registrations')} className={`flex flex-col items-center gap-2 p-4 rounded-lg border transition-all ${activeTab === 'registrations' ? 'bg-primary text-primary-foreground border-primary shadow-lg' : 'bg-card hover:bg-accent border-border hover:shadow-md'}`}>
-                    <Users className="h-5 w-5" />
-                    <span className="text-xs font-medium text-center">Registrations</span>
-                  </button>}
-                {getPermissionsForModule('categories').canRead && <button onClick={() => setActiveTab('categories')} className={`flex flex-col items-center gap-2 p-4 rounded-lg border transition-all ${activeTab === 'categories' ? 'bg-primary text-primary-foreground border-primary shadow-lg' : 'bg-card hover:bg-accent border-border hover:shadow-md'}`}>
-                    <Grid3X3 className="h-5 w-5" />
-                    <span className="text-xs font-medium text-center">Categories</span>
-                  </button>}
-                {getPermissionsForModule('panchayaths').canRead && <button onClick={() => setActiveTab('panchayaths')} className={`flex flex-col items-center gap-2 p-4 rounded-lg border transition-all ${activeTab === 'panchayaths' ? 'bg-primary text-primary-foreground border-primary shadow-lg' : 'bg-card hover:bg-accent border-border hover:shadow-md'}`}>
-                    <MapPin className="h-5 w-5" />
-                    <span className="text-xs font-medium text-center">Panchayaths</span>
-                  </button>}
-                {getPermissionsForModule('announcements').canRead && <button onClick={() => setActiveTab('announcements')} className={`flex flex-col items-center gap-2 p-4 rounded-lg border transition-all ${activeTab === 'announcements' ? 'bg-primary text-primary-foreground border-primary shadow-lg' : 'bg-card hover:bg-accent border-border hover:shadow-md'}`}>
-                    <Bell className="h-5 w-5" />
-                    <span className="text-xs font-medium text-center">Announcements</span>
-                  </button>}
-                {getPermissionsForModule('utilities').canRead && <button onClick={() => setActiveTab('utilities')} className={`flex flex-col items-center gap-2 p-4 rounded-lg border transition-all ${activeTab === 'utilities' ? 'bg-primary text-primary-foreground border-primary shadow-lg' : 'bg-card hover:bg-accent border-border hover:shadow-md'}`}>
-                    <Settings className="h-5 w-5" />
-                    <span className="text-xs font-medium text-center">Utilities</span>
-                  </button>}
-                {getPermissionsForModule('accounts').canRead && <button onClick={() => setActiveTab('accounts')} className={`flex flex-col items-center gap-2 p-4 rounded-lg border transition-all ${activeTab === 'accounts' ? 'bg-primary text-primary-foreground border-primary shadow-lg' : 'bg-card hover:bg-accent border-border hover:shadow-md'}`}>
-                    <Wallet className="h-5 w-5" />
-                    <span className="text-xs font-medium text-center">Accounts</span>
-                  </button>}
-                {getPermissionsForModule('reports').canRead && <button onClick={() => setActiveTab('reports')} className={`flex flex-col items-center gap-2 p-4 rounded-lg border transition-all ${activeTab === 'reports' ? 'bg-primary text-primary-foreground border-primary shadow-lg' : 'bg-card hover:bg-accent border-border hover:shadow-md'}`}>
-                    <BarChart3 className="h-5 w-5" />
-                    <span className="text-xs font-medium text-center">Reports</span>
-                  </button>}
-                {permissions.canManageAdmins && <button onClick={() => setActiveTab('admins')} className={`flex flex-col items-center gap-2 p-4 rounded-lg border transition-all ${activeTab === 'admins' ? 'bg-primary text-primary-foreground border-primary shadow-lg' : 'bg-card hover:bg-accent border-border hover:shadow-md'}`}>
-                    <Shield className="h-5 w-5" />
-                    <span className="text-xs font-medium text-center">Admin Control</span>
-                  </button>}
+          </div>
+
+          {getPermissionsForModule('categories').canRead && <TabsContent value="categories">
+              <CategoriesManagement permissions={permissions} />
+            </TabsContent>}
+
+          {getPermissionsForModule('panchayaths').canRead && <TabsContent value="panchayaths">
+              <PanchayathsManagement permissions={permissions} />
+            </TabsContent>}
+
+          {getPermissionsForModule('announcements').canRead && <TabsContent value="announcements">
+              <AnnouncementsManagement permissions={permissions} />
+            </TabsContent>}
+
+          {getPermissionsForModule('utilities').canRead && <TabsContent value="utilities">
+              <UtilitiesManagement />
+            </TabsContent>}
+
+          {getPermissionsForModule('accounts').canRead && <TabsContent value="accounts">
+              <AccountsManagement permissions={permissions} />
+            </TabsContent>}
+
+          {getPermissionsForModule('reports').canRead && <TabsContent value="reports">
+              <ReportsManagement permissions={permissions} />
+            </TabsContent>}
+
+          {permissions.canManageAdmins && <TabsContent value="admins">
+              <div className="space-y-6">
+                <AdminManagement permissions={permissions} />
+                <AdminPermissionsManagement permissions={permissions} />
               </div>
-            </div>
-          )}
-
-          {adminSession.role === 'user_admin' ? (
-            // User admin only sees registrations
-            <RegistrationsManagement permissions={permissions} />
-          ) : (
-            <>
-              {getPermissionsForModule('registrations').canRead && <TabsContent value="registrations">
-                  <RegistrationsManagement permissions={permissions} />
-                </TabsContent>}
-
-              {getPermissionsForModule('categories').canRead && <TabsContent value="categories">
-                  <CategoriesManagement permissions={permissions} />
-                </TabsContent>}
-
-              {getPermissionsForModule('panchayaths').canRead && <TabsContent value="panchayaths">
-                  <PanchayathsManagement permissions={permissions} />
-                </TabsContent>}
-
-              {getPermissionsForModule('announcements').canRead && <TabsContent value="announcements">
-                  <AnnouncementsManagement permissions={permissions} />
-                </TabsContent>}
-
-              {getPermissionsForModule('utilities').canRead && <TabsContent value="utilities">
-                  <UtilitiesManagement />
-                </TabsContent>}
-
-              {getPermissionsForModule('accounts').canRead && <TabsContent value="accounts">
-                  <AccountsManagement permissions={permissions} />
-                </TabsContent>}
-
-              {getPermissionsForModule('reports').canRead && <TabsContent value="reports">
-                  <ReportsManagement permissions={permissions} />
-                </TabsContent>}
-
-              {permissions.canManageAdmins && <TabsContent value="admins">
-                  <div className="space-y-6">
-                    <AdminManagement permissions={permissions} />
-                    <AdminPermissionsManagement permissions={permissions} />
-                  </div>
-                </TabsContent>}
-            </>
-          )}
+            </TabsContent>}
         </Tabs>
       </div>
     </div>
